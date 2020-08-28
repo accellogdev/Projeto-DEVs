@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 import {
     UserController,
+    CallController,
 } from './api/controllers';
 
 const routes = Router();
@@ -75,5 +76,28 @@ routes.get('/users', UserController.index);
  *         description: Erro interno na requisição.
  */
 routes.post('/users', UserController.store);
+
+/**
+ * @swagger
+ * /call:
+ *   post:
+ *     description: Route POST for register call
+ *     tags:
+ *       - Call
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       201:
+ *         description: Call id.
+ *       400:
+ *         description: JSON informado inválido!
+ *       401:
+ *         description: Não autorizado!
+ *       404:
+ *         description: Requisição não encontrada.
+ *       500:
+ *         description: Erro interno na requisição.
+ */
+routes.post('/call', CallController.store);
 
 export default routes;

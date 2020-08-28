@@ -1,3 +1,4 @@
 import UserController from './UserController';
+import CallController from './CallController';
 
-export { UserController };
+export { UserController, CallController };
