@@ -1,4 +1,5 @@
 import HttpStatus from 'http-status';
+import From  from 'connect-form';
 
 import { User } from '../models';
 
@@ -20,13 +21,13 @@ class UserController {
 
       let user = await User.findOne({ matricula });
   
-      if (!user) {               
+      if (!user) {
         user = await User.create({
           nome, 
           matricula, 
           foto, 
           cargo
-        });     
+        });
       }
     
       return response.json(user);

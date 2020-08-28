@@ -1,11 +1,13 @@
 import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema({
-  nome: String,
-  token: String,
-  matricula: String,
-  foto: String,
-  cargo: String
+  name: String,
+  registry: String,
+  photo: Buffer,
+  role: String
+}, 
+{ 
+  timestamps: true,
 });
 
 module.exports = mongoose.model('User', UserSchema);
@@ -16,44 +18,44 @@ module.exports = mongoose.model('User', UserSchema);
  *   User:
  *     type: object
  *     required:
- *       - nome
- *       - matricula
- *       - foto 
- *       - cargo
+ *       - name
+ *       - registry
+ *       - photo 
+ *       - registry
  *     properties:
- *       nome:
+ *       name:
  *         type: string
- *       matricula:
+ *       registry:
  *         type: string
- *       foto:
+ *       photo:
  *         type: string
- *       cargo:
+ *       registry:
  *         type: string
  * 
  *   UserGET:
  *     type: object
  *     required:
  *       - _id
- *       - nome
- *       - matricula
- *       - foto 
- *       - cargo
+ *       - name
+ *       - registry
+ *       - photo 
+ *       - registry
  *       - __v
  *     properties:
  *       _id:
  *         type: string
- *       nome:
+ *       name:
  *         type: string
- *       matricula:
+ *       registry:
  *         type: string
- *       foto:
+ *       photo:
  *         type: string
- *       cargo:
+ *       registry:
  *         type: string     
  *       __v:
  *         type: string
  * 
- *   Users:
+ *   User:
  *     type: array
  *     items:
  *       $ref: "#/definitions/UserGET"
