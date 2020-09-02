@@ -2,13 +2,12 @@ import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema({
   name: String,
-  token: String,
   registry: String,
-  photo: String,
+  photo: Buffer,
   role: String
-},
+}, 
 { 
-  timestamps: true 
+  timestamps: true,
 });
 
 module.exports = mongoose.model('User', UserSchema);
@@ -52,11 +51,11 @@ module.exports = mongoose.model('User', UserSchema);
  *       photo:
  *         type: string
  *       role:
- *         type: string     
+ *         type: string   
  *       __v:
  *         type: string
  * 
- *   Users:
+ *   User:
  *     type: array
  *     items:
  *       $ref: "#/definitions/UserGET"

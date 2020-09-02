@@ -1,4 +1,5 @@
 import HttpStatus from 'http-status';
+import From  from 'connect-form';
 
 import { User } from '../models';
 
@@ -20,7 +21,7 @@ class UserController {
 
       let user = await User.findOne({ registry });
   
-      if (!user) {               
+      if (!user) {
         user = await User.create({
           name, 
           registry, 
