@@ -21,7 +21,7 @@ module.exports = mongoose.model('User', UserSchema);
  *       - name
  *       - registry
  *       - photo 
- *       - registry
+ *       - role
  *     properties:
  *       name:
  *         type: string
@@ -29,7 +29,7 @@ module.exports = mongoose.model('User', UserSchema);
  *         type: string
  *       photo:
  *         type: string
- *       registry:
+ *       role:
  *         type: string
  * 
  *   UserGET:
@@ -39,7 +39,7 @@ module.exports = mongoose.model('User', UserSchema);
  *       - name
  *       - registry
  *       - photo 
- *       - registry
+ *       - role
  *       - __v
  *     properties:
  *       _id:
@@ -50,8 +50,8 @@ module.exports = mongoose.model('User', UserSchema);
  *         type: string
  *       photo:
  *         type: string
- *       registry:
- *         type: string     
+ *       role:
+ *         type: string   
  *       __v:
  *         type: string
  * 

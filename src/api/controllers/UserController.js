@@ -17,17 +17,17 @@ class UserController {
   
   async store(request, response) {
     try {
-      const { nome, matricula, foto, cargo } = request.body;
+      const { name, registry, photo, role } = request.body;
 
-      let user = await User.findOne({ matricula });
+      let user = await User.findOne({ registry });
   
       if (!user) {
         user = await User.create({
-          nome, 
-          matricula, 
-          foto, 
-          cargo
-        });
+          name, 
+          registry, 
+          photo, 
+          role
+        });     
       }
     
       return response.json(user);

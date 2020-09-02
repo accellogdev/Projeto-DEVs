@@ -2,6 +2,7 @@ import { Router } from 'express';
 import Multer from 'multer';
 import {
     UserController,
+    CallController,
 } from './api/controllers';
 
 const uploadMiddleware = Multer(new UploadConfig().storage());
@@ -80,7 +81,7 @@ routes.post('/users', UserController.store);
 
 /**
  * @swagger
- * /users:
+ * /users/photo:
  *   post:
  *     description: Rota POST para upload de foto.
  *     tags:
@@ -116,7 +117,7 @@ routes.post('/users/photo', uploadMiddleware.single('single'), UserController.up
 
 /**
  * @swagger
- * /usuario/autenticar:
+ * /login:
  *   post:
  *     description: Rota POST para realizar a atutenticação de um usuário.
  *     tags:
@@ -145,5 +146,28 @@ routes.post('/users/photo', uploadMiddleware.single('single'), UserController.up
  *         description: Erro interno na requisição.
  */
 routes.post('/login', UserController.login);
+
+/**
+ * @swagger
+ * /call:
+ *   post:
+ *     description: Route POST for register call
+ *     tags:
+ *       - Call
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       201:
+ *         description: Call id.
+ *       400:
+ *         description: JSON informado inválido!
+ *       401:
+ *         description: Não autorizado!
+ *       404:
+ *         description: Requisição não encontrada.
+ *       500:
+ *         description: Erro interno na requisição.
+ */
+routes.post('/call', CallController.store);
 
 export default routes;
