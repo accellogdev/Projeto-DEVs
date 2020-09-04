@@ -15,7 +15,7 @@ class Auth {
 
       const { sub } = claims;
 
-      request.registry = sub;
+      request.params.registry = sub;
       return next();
     });
   }

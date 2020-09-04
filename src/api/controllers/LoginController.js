@@ -24,12 +24,11 @@ class LoginController {
         '_id': user._id,
         'name': user.name,
         'registry': user.registry,
-        'photo': user.photo,
+        // 'photo': user.photo,
         'role': user.role,
         'token': token,
         'createdAt': user.createdAt,
-        'updatedAt': user.updatedAt,
-        '__v': user.__v,
+        'updatedAt': user.updatedAt
       });
       
     } catch (e) {

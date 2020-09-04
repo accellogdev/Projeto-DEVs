@@ -7,9 +7,6 @@ const UserSchema = new mongoose.Schema({
   registry: { 
     type: String
   },
-  photo: { 
-    type: String
-  },
   role: { 
     type: String
   },
@@ -28,14 +25,11 @@ module.exports = mongoose.model('User', UserSchema);
  *     required:
  *       - name
  *       - registry
- *       - photo 
  *       - role
  *     properties:
  *       name:
  *         type: string
  *       registry:
- *         type: string
- *       photo:
  *         type: string
  *       role:
  *         type: string
@@ -46,9 +40,7 @@ module.exports = mongoose.model('User', UserSchema);
  *       - _id
  *       - name
  *       - registry
- *       - photo 
  *       - role
- *       - __v
  *     properties:
  *       _id:
  *         type: string
@@ -56,12 +48,8 @@ module.exports = mongoose.model('User', UserSchema);
  *         type: string
  *       registry:
  *         type: string
- *       photo:
- *         type: string
  *       role:
  *         type: string     
- *       __v:
- *         type: string
  * 
  *   Users:
  *     type: array

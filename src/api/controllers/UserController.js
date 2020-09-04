@@ -30,20 +30,19 @@ class UserController {
   
   async store(request, response) {
     try {
-      const { name, registry, photo, role } = request.body;
+      const { name, registry, role } = request.body;
       
       let user = await User.findOne({ registry });
-  
+
       if (!user) {               
         user = await User.create({
           name, 
           registry, 
-          photo, 
           role
         });     
       }
-    
-      return response.status(httpStatus.OK).json(user);
+
+      return response.status(HttpStatus.CREATED).send(user);
 
     } catch (e) {
       return response.status(HttpStatus.BAD_REQUEST).json(e);
