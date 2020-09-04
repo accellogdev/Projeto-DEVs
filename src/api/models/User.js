@@ -1,11 +1,21 @@
 import mongoose from 'mongoose';
 
 const UserSchema = new mongoose.Schema({
-  nome: String,
-  token: String,
-  matricula: String,
-  foto: String,
-  cargo: String
+  name: { 
+    type: String
+  },  
+  registry: { 
+    type: String
+  },
+  photo: { 
+    type: String
+  },
+  role: { 
+    type: String
+  },
+}, 
+{ 
+  timestamps: true 
 });
 
 module.exports = mongoose.model('User', UserSchema);
@@ -16,39 +26,39 @@ module.exports = mongoose.model('User', UserSchema);
  *   User:
  *     type: object
  *     required:
- *       - nome
- *       - matricula
- *       - foto 
- *       - cargo
+ *       - name
+ *       - registry
+ *       - photo 
+ *       - role
  *     properties:
- *       nome:
+ *       name:
  *         type: string
- *       matricula:
+ *       registry:
  *         type: string
- *       foto:
+ *       photo:
  *         type: string
- *       cargo:
+ *       role:
  *         type: string
  * 
  *   UserGET:
  *     type: object
  *     required:
  *       - _id
- *       - nome
- *       - matricula
- *       - foto 
- *       - cargo
+ *       - name
+ *       - registry
+ *       - photo 
+ *       - role
  *       - __v
  *     properties:
  *       _id:
  *         type: string
- *       nome:
+ *       name:
  *         type: string
- *       matricula:
+ *       registry:
  *         type: string
- *       foto:
+ *       photo:
  *         type: string
- *       cargo:
+ *       role:
  *         type: string     
  *       __v:
  *         type: string

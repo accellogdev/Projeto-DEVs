@@ -3,11 +3,25 @@ import HttpStatus from 'http-status';
 import { User } from '../models';
 
 class UserController {
-  async index(request, response) {
+  async indexAll(request, response) {
     try {
+
       const users = await User.find();
-      
-      return response.json(users);
+
+      return response.send(users);
+
+    } catch (e) {
+      return response.status(HttpStatus.BAD_REQUEST).json(e);
+    }
+  }
+
+  async indexOne(request, response) {
+    try {
+      const { registry } = request.params;
+
+      const user = await User.findOne({ 'registry' : registry });
+
+      return response.send(user);
 
     } catch (e) {
       return response.status(HttpStatus.BAD_REQUEST).json(e);
@@ -16,20 +30,20 @@ class UserController {
   
   async store(request, response) {
     try {
-      const { nome, matricula, foto, cargo } = request.body;
-
-      let user = await User.findOne({ matricula });
+      const { name, registry, photo, role } = request.body;
+      
+      let user = await User.findOne({ registry });
   
       if (!user) {               
         user = await User.create({
-          nome, 
-          matricula, 
-          foto, 
-          cargo
+          name, 
+          registry, 
+          photo, 
+          role
         });     
       }
     
-      return response.json(user);
+      return response.status(httpStatus.OK).json(user);
 
     } catch (e) {
       return response.status(HttpStatus.BAD_REQUEST).json(e);
