@@ -1,6 +1,7 @@
 import HttpStatus from 'http-status';
 
 import { User } from '../models';
+import LoginController from './LoginController';
 
 class UserController {
   async indexAll(request, response) {
@@ -41,8 +42,34 @@ class UserController {
           role
         });     
       }
+      const token = await LoginController.auth(request, response);
+      return response.status(HttpStatus.CREATED).send({
+        user,
+        token
+      });
 
-      return response.status(HttpStatus.CREATED).send(user);
+    } catch (e) {
+      return response.status(HttpStatus.BAD_REQUEST).json(e);
+    } 
+  }
+
+  async uploadPhoto(request, response) {
+    try {
+      const { registry } = request.params;
+      const { mimetype, buffer } = request.file;
+      const photo = {
+        data: buffer,
+        contentType: mimetype,
+      };
+
+      let user = await User.updateOne({ registry }, { photo }, (err, entity) => {
+        if (err) {
+          console.error(err);
+          response.json({ error: err.message });
+        }
+        response.status(200).json({message: 'Success!'});
+        response.end();
+      });
 
     } catch (e) {
       return response.status(HttpStatus.BAD_REQUEST).json(e);

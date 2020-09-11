@@ -1,4 +1,8 @@
 import { Router } from 'express';
+import Multer from 'multer';
+import storage from './middlewares/upload';
+
+const uploadMiddleware = Multer(storage());
 
 import {
     UserController,
@@ -93,11 +97,6 @@ routes.post('/users', UserController.store);
  *     consumes:
  *       - multipart/form-data
  *     parameters:
- *       - name: userId
- *         description: User Id.
- *         in: path
- *         required: true
- *         type: string
  *       - name: photo
  *         description: User photo.
  *         in: formData
@@ -115,7 +114,7 @@ routes.post('/users', UserController.store);
  *       500:
  *         description: Erro interno na requisição.
  */
-routes.post('/users/photo', UserController.store);
+routes.post('/users/photo', Auth.authenticate, uploadMiddleware.single('photo'), UserController.uploadPhoto);
 
 /**
  * @swagger

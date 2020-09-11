@@ -6,8 +6,9 @@ import Jwt from '../auth/Jwt';
 class LoginController {
   async auth(request, response) {
     const { registry } = request.body;
+    console.log(registry);
 
-    try {                  
+    try {
 
       const user = await User.findOne({ 'registry': registry });
 
