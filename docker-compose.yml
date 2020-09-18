@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  backend:
+    container_name: backend
+    build: .
+    command: npm run dev
+    env_file: .env
+    ports:
+      - "${APP_PORT}:3333"
+    volumes:
+      - ./src:/usr/backend/src
+    networks:
+      - api-net
+    restart: always
+
+networks:
+  api-net:
+    driver: bridge
